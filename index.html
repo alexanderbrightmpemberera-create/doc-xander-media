@@ -1,0 +1,638 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>DOC XANDER Media</title>
+
+  <meta name="description" content="DOC XANDER Media - Entertainment, stories, music, interviews and news.">
+
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: Arial, sans-serif;
+      background: #05080c;
+      color: white;
+      line-height: 1.6;
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(5, 8, 12, 0.96);
+      border-bottom: 1px solid #173d68;
+    }
+
+    .nav {
+      max-width: 1150px;
+      margin: auto;
+      padding: 14px 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+    }
+
+    .logo {
+      font-size: 23px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      color: white;
+    }
+
+    .logo span {
+      color: #168cff;
+    }
+
+    nav {
+      display: flex;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    nav a {
+      color: #ddd;
+      font-size: 14px;
+      font-weight: bold;
+    }
+
+    nav a:hover {
+      color: #168cff;
+    }
+
+    .hero {
+      min-height: 620px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 80px 20px;
+      background:
+        radial-gradient(circle at top, #12345a 0%, #07111d 35%, #05080c 70%);
+    }
+
+    .hero-content {
+      max-width: 850px;
+    }
+
+    .badge {
+      display: inline-block;
+      border: 1px solid #168cff;
+      color: #168cff;
+      border-radius: 30px;
+      padding: 8px 18px;
+      margin-bottom: 20px;
+      font-weight: bold;
+    }
+
+    .hero h1 {
+      font-size: clamp(45px, 10vw, 90px);
+      line-height: 1;
+      letter-spacing: 4px;
+      margin-bottom: 20px;
+    }
+
+    .hero h1 span {
+      color: #168cff;
+    }
+
+    .hero p {
+      color: #c7d0da;
+      font-size: 20px;
+      margin-bottom: 30px;
+    }
+
+    .buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 13px 22px;
+      border-radius: 8px;
+      background: #168cff;
+      color: white;
+      font-weight: bold;
+    }
+
+    .btn.secondary {
+      background: transparent;
+      border: 1px solid #168cff;
+    }
+
+    section {
+      max-width: 1150px;
+      margin: auto;
+      padding: 75px 20px;
+    }
+
+    .section-title {
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .section-title h2 {
+      font-size: 38px;
+      margin-bottom: 8px;
+    }
+
+    .section-title span {
+      color: #168cff;
+    }
+
+    .section-title p {
+      color: #9da8b4;
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 20px;
+    }
+
+    .card {
+      background: #0b1118;
+      border: 1px solid #18324c;
+      border-radius: 14px;
+      padding: 28px;
+      transition: 0.2s;
+    }
+
+    .card:hover {
+      transform: translateY(-5px);
+      border-color: #168cff;
+    }
+
+    .icon {
+      font-size: 40px;
+      margin-bottom: 15px;
+    }
+
+    .card h3 {
+      font-size: 23px;
+      margin-bottom: 10px;
+    }
+
+    .card p {
+      color: #aeb8c3;
+    }
+
+    .music-card {
+      text-align: center;
+    }
+
+    .music-card .play {
+      display: inline-block;
+      font-size: 42px;
+      margin-bottom: 15px;
+    }
+
+    .youtube {
+      background: linear-gradient(135deg, #101b29, #07101a);
+      border: 1px solid #183d62;
+      border-radius: 18px;
+      padding: 45px 25px;
+      text-align: center;
+    }
+
+    .youtube h3 {
+      font-size: 30px;
+      margin-bottom: 12px;
+    }
+
+    .youtube p {
+      color: #adb8c4;
+      margin-bottom: 25px;
+    }
+
+    .news-card {
+      min-height: 190px;
+    }
+
+    .news-card small {
+      color: #168cff;
+      font-weight: bold;
+    }
+
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 15px;
+    }
+
+    .gallery-box {
+      min-height: 180px;
+      border-radius: 12px;
+      border: 1px dashed #315779;
+      background: #0a1119;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      color: #748291;
+      padding: 20px;
+    }
+
+    .artist {
+      background: #0b1118;
+      border: 1px solid #18324c;
+      border-radius: 18px;
+      padding: 40px 25px;
+      text-align: center;
+    }
+
+    .artist p {
+      color: #aeb8c3;
+      max-width: 700px;
+      margin: 10px auto 25px;
+    }
+
+    .contact {
+      text-align: center;
+    }
+
+    .contact-buttons {
+      display: flex;
+      justify-content: center;
+      flex-wrap: wrap;
+      gap: 12px;
+      margin-top: 25px;
+    }
+
+    footer {
+      border-top: 1px solid #17324d;
+      background: #030507;
+      padding: 30px 20px;
+      text-align: center;
+      color: #75808c;
+    }
+
+    footer strong {
+      color: white;
+    }
+
+    @media (max-width: 800px) {
+      .cards {
+        grid-template-columns: 1fr;
+      }
+
+      .gallery {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      nav {
+        gap: 10px;
+      }
+
+      .nav {
+        flex-direction: column;
+      }
+    }
+
+    @media (max-width: 500px) {
+      .gallery {
+        grid-template-columns: 1fr;
+      }
+
+      .hero {
+        min-height: 560px;
+      }
+
+      .hero h1 {
+        font-size: 50px;
+      }
+    }
+  </style>
+</head>
+
+<body>
+
+<header>
+  <div class="nav">
+    <div class="logo">DOC <span>XANDER</span></div>
+
+    <nav>
+      <a href="#home">Home</a>
+      <a href="#shows">Shows</a>
+      <a href="#music">Music</a>
+      <a href="#videos">Videos</a>
+      <a href="#news">News</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#contact">Contact</a>
+    </nav>
+  </div>
+</header>
+
+<main>
+
+  <section class="hero" id="home">
+    <div class="hero-content">
+
+      <div class="badge">DOC XANDER MEDIA</div>
+
+      <h1>DOC <span>XANDER</span></h1>
+
+      <p>
+        Entertainment. Stories. Music. Interviews.
+        Your home for fresh entertainment and media.
+      </p>
+
+      <div class="buttons">
+        <a class="btn" href="#shows">Explore Shows</a>
+
+        <a class="btn secondary"
+           href="https://www.youtube.com/@Doc_Xander_420-62"
+           target="_blank">
+          Watch YouTube
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+
+  <section id="shows">
+
+    <div class="section-title">
+      <h2>Our <span>Shows</span></h2>
+      <p>Discover DOC XANDER's upcoming programs.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="icon">❤️</div>
+        <h3>Blind Meet</h3>
+        <p>
+          A new entertainment experience bringing people together
+          for unexpected conversations and connections.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🌊</div>
+        <h3>Deep End</h3>
+        <p>
+          Real conversations, interesting stories and entertainment
+          that goes deeper.
+        </p>
+      </div>
+
+      <div class="card">
+        <div class="icon">🎤</div>
+        <h3>Exclusive Interviews</h3>
+        <p>
+          Exclusive conversations with artists, creators,
+          personalities and special guests.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="music">
+
+    <div class="section-title">
+      <h2><span>Music</span></h2>
+      <p>Discover music from artists featured on DOC XANDER.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card music-card">
+        <div class="play">🎵</div>
+        <h3>New Music</h3>
+        <p>
+          New songs and releases will appear here.
+        </p>
+      </div>
+
+      <div class="card music-card">
+        <div class="play">🎧</div>
+        <h3>Listen Online</h3>
+        <p>
+          Stream music directly from the DOC XANDER platform.
+        </p>
+      </div>
+
+      <div class="card music-card">
+        <div class="play">⬇️</div>
+        <h3>Music Downloads</h3>
+        <p>
+          Approved songs will be available for download.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="videos">
+
+    <div class="section-title">
+      <h2>YouTube <span>Videos</span></h2>
+      <p>Watch DOC XANDER content on YouTube.</p>
+    </div>
+
+    <div class="youtube">
+
+      <h3>DOC XANDER YouTube</h3>
+
+      <p>
+        Subscribe to our YouTube channel for Blind Meet,
+        Deep End, exclusive interviews and more.
+      </p>
+
+      <a class="btn"
+         href="https://www.youtube.com/@Doc_Xander_420-62"
+         target="_blank">
+        ▶ Visit YouTube Channel
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section id="news">
+
+    <div class="section-title">
+      <h2>News & <span>Entertainment</span></h2>
+      <p>Latest stories, entertainment and updates.</p>
+    </div>
+
+    <div class="cards">
+
+      <div class="card news-card">
+        <small>ENTERTAINMENT</small>
+        <h3>Latest Entertainment</h3>
+        <p>
+          Fresh entertainment stories and updates from DOC XANDER.
+        </p>
+      </div>
+
+      <div class="card news-card">
+        <small>CELEBRITY</small>
+        <h3>Celebrity Updates</h3>
+        <p>
+          Interviews, celebrity stories and entertainment news.
+        </p>
+      </div>
+
+      <div class="card news-card">
+        <small>DOC XANDER</small>
+        <h3>Platform Updates</h3>
+        <p>
+          Follow this section for announcements about our shows
+          and new projects.
+        </p>
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section id="gallery">
+
+    <div class="section-title">
+      <h2>Photos & <span>Posters</span></h2>
+      <p>Official DOC XANDER Media visuals.</p>
+    </div>
+
+    <div class="gallery">
+
+      <div class="gallery-box">
+        📸<br>
+        Photos coming soon
+      </div>
+
+      <div class="gallery-box">
+        🎬<br>
+        Show posters coming soon
+      </div>
+
+      <div class="gallery-box">
+        🎤<br>
+        Artist photos coming soon
+      </div>
+
+      <div class="gallery-box">
+        ❤️<br>
+        Blind Meet
+      </div>
+
+      <div class="gallery-box">
+        🌊<br>
+        Deep End
+      </div>
+
+      <div class="gallery-box">
+        🎥<br>
+        Exclusive Interviews
+      </div>
+
+    </div>
+
+  </section>
+
+
+  <section>
+
+    <div class="section-title">
+      <h2>Artist <span>Music Portal</span></h2>
+      <p>Submit your music to DOC XANDER Media.</p>
+    </div>
+
+    <div class="artist">
+
+      <h3>Are you an artist?</h3>
+
+      <p>
+        Artists will be able to submit their songs, artwork and
+        information for review. Approved music can then be published
+        on the DOC XANDER Media website.
+      </p>
+
+      <a class="btn"
+         href="https://wa.me/265896855187"
+         target="_blank">
+        Submit Music via WhatsApp
+      </a>
+
+    </div>
+
+  </section>
+
+
+  <section id="contact" class="contact">
+
+    <div class="section-title">
+      <h2>Contact <span>DOC XANDER</span></h2>
+      <p>Connect with us and follow our platforms.</p>
+    </div>
+
+    <div class="contact-buttons">
+
+      <a class="btn"
+         href="https://wa.me/265896855187"
+         target="_blank">
+        💬 WhatsApp
+      </a>
+
+      <a class="btn"
+         href="https://www.facebook.com/profile.php?id=61594221434108"
+         target="_blank">
+        Facebook
+      </a>
+
+      <a class="btn"
+         href="https://www.youtube.com/@Doc_Xander_420-62"
+         target="_blank">
+        YouTube
+      </a>
+
+    </div>
+
+  </section>
+
+</main>
+
+
+<footer>
+
+  <p>
+    © 2026 <strong>DOC XANDER Media</strong>.
+    All rights reserved.
+  </p>
+
+  <p>
+    Entertainment • Music • Stories • Interviews
+  </p>
+
+</footer>
+
+</body>
+</html>
