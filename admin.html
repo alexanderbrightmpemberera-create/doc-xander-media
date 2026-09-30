@@ -1,0 +1,1082 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>DOC XANDER Media - Admin</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background: #050b18;
+  color: white;
+}
+
+header {
+  background: linear-gradient(135deg, #061b3a, #000814);
+  padding: 22px 16px;
+  text-align: center;
+  border-bottom: 1px solid #18345f;
+}
+
+.logo {
+  font-size: 27px;
+  font-weight: 900;
+  letter-spacing: 2px;
+}
+
+.logo span {
+  color: #00aaff;
+}
+
+.subtitle {
+  color: #9db4d3;
+  margin-top: 6px;
+}
+
+.container {
+  width: 100%;
+  max-width: 850px;
+  margin: auto;
+  padding: 18px;
+}
+
+.card {
+  background: #0b1628;
+  border: 1px solid #1b355a;
+  border-radius: 15px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 8px 30px rgba(0,0,0,.25);
+}
+
+h2 {
+  margin-top: 0;
+  color: #00aaff;
+}
+
+label {
+  display: block;
+  margin-top: 14px;
+  margin-bottom: 7px;
+  font-weight: bold;
+}
+
+input,
+textarea,
+select {
+  width: 100%;
+  padding: 13px;
+  border-radius: 9px;
+  border: 1px solid #294a76;
+  background: #07111f;
+  color: white;
+  font-size: 15px;
+  outline: none;
+}
+
+textarea {
+  min-height: 130px;
+  resize: vertical;
+}
+
+input:focus,
+textarea:focus,
+select:focus {
+  border-color: #00aaff;
+}
+
+button {
+  border: none;
+  border-radius: 9px;
+  padding: 13px 18px;
+  margin-top: 15px;
+  font-size: 15px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.primary {
+  background: #008cff;
+  color: white;
+  width: 100%;
+}
+
+.primary:hover {
+  background: #0072d6;
+}
+
+.secondary {
+  background: #172b49;
+  color: white;
+}
+
+.danger {
+  background: #b3261e;
+  color: white;
+}
+
+.hidden {
+  display: none !important;
+}
+
+.message {
+  margin-top: 12px;
+  padding: 11px;
+  border-radius: 8px;
+  display: none;
+}
+
+.success {
+  background: #123c28;
+  color: #78f0aa;
+}
+
+.error {
+  background: #451b1b;
+  color: #ff9a9a;
+}
+
+.post {
+  background: #07111f;
+  border: 1px solid #1d385e;
+  border-radius: 12px;
+  padding: 15px;
+  margin-top: 15px;
+}
+
+.post img {
+  width: 100%;
+  max-height: 260px;
+  object-fit: cover;
+  border-radius: 9px;
+  margin-top: 10px;
+}
+
+.post-title {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.category {
+  display: inline-block;
+  background: #008cff;
+  padding: 5px 9px;
+  border-radius: 20px;
+  font-size: 12px;
+  margin: 8px 0;
+}
+
+.post-date {
+  color: #8da5c5;
+  font-size: 12px;
+}
+
+.actions {
+  display: flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+.actions button {
+  margin-top: 10px;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 10px;
+  flex-wrap: wrap;
+}
+
+.user-email {
+  color: #9db4d3;
+  font-size: 13px;
+}
+
+.small-note {
+  color: #8298b6;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+#loginSection {
+  max-width: 480px;
+  margin: 35px auto;
+}
+
+#dashboard {
+  display: none;
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">DOC <span>XANDER</span></div>
+  <div class="subtitle">Media Admin Dashboard</div>
+</header>
+
+<div class="container">
+
+  <!-- LOGIN -->
+  <section id="loginSection" class="card">
+
+    <h2>Admin Login</h2>
+
+    <p class="small-note">
+      Sign in with your DOC XANDER administrator account.
+    </p>
+
+    <label>Email</label>
+    <input
+      type="email"
+      id="email"
+      placeholder="Your admin email"
+    >
+
+    <label>Password</label>
+    <input
+      type="password"
+      id="password"
+      placeholder="Your password"
+    >
+
+    <button class="primary" id="loginBtn">
+      LOGIN
+    </button>
+
+    <div id="loginMessage" class="message"></div>
+
+  </section>
+
+
+  <!-- DASHBOARD -->
+  <section id="dashboard">
+
+    <div class="card">
+
+      <div class="topbar">
+
+        <div>
+          <h2>DOC XANDER Dashboard</h2>
+          <div id="userEmail" class="user-email"></div>
+        </div>
+
+        <button class="secondary" id="logoutBtn">
+          Logout
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- CREATE POST -->
+    <div class="card">
+
+      <h2 id="formTitle">Create New Post</h2>
+
+      <label>Post Title</label>
+      <input
+        type="text"
+        id="postTitle"
+        placeholder="Example: DOC XANDER releases new show"
+      >
+
+      <label>Category</label>
+
+      <select id="postCategory">
+
+        <option value="News">News</option>
+        <option value="Entertainment">Entertainment</option>
+        <option value="Music">Music</option>
+        <option value="Shows">Shows</option>
+        <option value="Interviews">Interviews</option>
+        <option value="Sports">Sports</option>
+        <option value="Celebrity">Celebrity</option>
+        <option value="Lifestyle">Lifestyle</option>
+
+      </select>
+
+
+      <label>Post Content</label>
+
+      <textarea
+        id="postContent"
+        placeholder="Write your news or story here..."
+      ></textarea>
+
+
+      <label>Image URL (optional)</label>
+
+      <input
+        type="url"
+        id="imageUrl"
+        placeholder="Paste image URL here"
+      >
+
+      <p class="small-note">
+        We will add direct image uploading from your phone in the next step.
+      </p>
+
+
+      <label>YouTube Video URL (optional)</label>
+
+      <input
+        type="url"
+        id="youtubeUrl"
+        placeholder="https://www.youtube.com/watch?v=..."
+      >
+
+
+      <button class="primary" id="saveBtn">
+        PUBLISH POST
+      </button>
+
+      <button
+        class="secondary hidden"
+        id="cancelEditBtn"
+      >
+        Cancel Edit
+      </button>
+
+      <div id="postMessage" class="message"></div>
+
+    </div>
+
+
+    <!-- POSTS -->
+    <div class="card">
+
+      <h2>Your Posts</h2>
+
+      <div id="postsList">
+        Loading posts...
+      </div>
+
+    </div>
+
+  </section>
+
+</div>
+
+
+<script type="module">
+
+import {
+  initializeApp
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-app.js";
+
+import {
+  getAuth,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-auth.js";
+
+import {
+  getFirestore,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy,
+  serverTimestamp,
+  doc,
+  updateDoc,
+  deleteDoc
+} from "https://www.gstatic.com/firebasejs/12.19.0/firebase-firestore.js";
+
+
+/* =========================
+   FIREBASE CONFIG
+========================= */
+
+const firebaseConfig = {
+  apiKey: "AIzaSyC98CD4o8m-JLvMAY3YinyLSnJMrmQWDjc",
+  authDomain: "doc-xander-media-d2775.firebaseapp.com",
+  projectId: "doc-xander-media-d2775",
+  storageBucket: "doc-xander-media-d2775.firebasestorage.app",
+  messagingSenderId: "539361973178",
+  appId: "1:539361973178:web:60b294abf4539b34c74383",
+  measurementId: "G-5FPDWDC5VK"
+};
+
+
+/* =========================
+   INITIALIZE FIREBASE
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+
+/* =========================
+   YOUR ADMIN UID
+========================= */
+
+const ADMIN_UID =
+  "zuQNMHH3CbgGcp2NYzTyuHnIshF2";
+
+
+/* =========================
+   ELEMENTS
+========================= */
+
+const loginSection =
+  document.getElementById("loginSection");
+
+const dashboard =
+  document.getElementById("dashboard");
+
+const emailInput =
+  document.getElementById("email");
+
+const passwordInput =
+  document.getElementById("password");
+
+const loginBtn =
+  document.getElementById("loginBtn");
+
+const logoutBtn =
+  document.getElementById("logoutBtn");
+
+const loginMessage =
+  document.getElementById("loginMessage");
+
+const postMessage =
+  document.getElementById("postMessage");
+
+const userEmail =
+  document.getElementById("userEmail");
+
+const postTitle =
+  document.getElementById("postTitle");
+
+const postCategory =
+  document.getElementById("postCategory");
+
+const postContent =
+  document.getElementById("postContent");
+
+const imageUrl =
+  document.getElementById("imageUrl");
+
+const youtubeUrl =
+  document.getElementById("youtubeUrl");
+
+const saveBtn =
+  document.getElementById("saveBtn");
+
+const cancelEditBtn =
+  document.getElementById("cancelEditBtn");
+
+const postsList =
+  document.getElementById("postsList");
+
+
+let editingPostId = null;
+
+
+/* =========================
+   MESSAGE
+========================= */
+
+function showMessage(element, text, type) {
+
+  element.textContent = text;
+
+  element.className =
+    "message " + type;
+
+  element.style.display = "block";
+
+}
+
+
+/* =========================
+   LOGIN
+========================= */
+
+loginBtn.addEventListener("click", async () => {
+
+  const email =
+    emailInput.value.trim();
+
+  const password =
+    passwordInput.value;
+
+  if (!email || !password) {
+
+    showMessage(
+      loginMessage,
+      "Please enter your email and password.",
+      "error"
+    );
+
+    return;
+  }
+
+  loginBtn.disabled = true;
+
+  loginBtn.textContent = "Logging in...";
+
+  try {
+
+    await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+
+  } catch (error) {
+
+    console.error(error);
+
+    showMessage(
+      loginMessage,
+      "Login failed. Check your email and password.",
+      "error"
+    );
+
+  }
+
+  loginBtn.disabled = false;
+
+  loginBtn.textContent = "LOGIN";
+
+});
+
+
+/* =========================
+   AUTH STATE
+========================= */
+
+onAuthStateChanged(auth, async (user) => {
+
+  if (!user) {
+
+    loginSection.style.display = "block";
+
+    dashboard.style.display = "none";
+
+    return;
+  }
+
+
+  /* Only your UID is allowed */
+
+  if (user.uid !== ADMIN_UID) {
+
+    await signOut(auth);
+
+    showMessage(
+      loginMessage,
+      "This account is not authorized as an administrator.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  loginSection.style.display = "none";
+
+  dashboard.style.display = "block";
+
+  userEmail.textContent =
+    user.email;
+
+  loadPosts();
+
+});
+
+
+/* =========================
+   LOGOUT
+========================= */
+
+logoutBtn.addEventListener("click", async () => {
+
+  await signOut(auth);
+
+});
+
+
+/* =========================
+   SAVE POST
+========================= */
+
+saveBtn.addEventListener("click", async () => {
+
+  const title =
+    postTitle.value.trim();
+
+  const category =
+    postCategory.value;
+
+  const content =
+    postContent.value.trim();
+
+  const image =
+    imageUrl.value.trim();
+
+  const video =
+    youtubeUrl.value.trim();
+
+
+  if (!title || !content) {
+
+    showMessage(
+      postMessage,
+      "Please enter a title and post content.",
+      "error"
+    );
+
+    return;
+  }
+
+
+  saveBtn.disabled = true;
+
+  saveBtn.textContent =
+    editingPostId
+      ? "Updating..."
+      : "Publishing...";
+
+
+  try {
+
+    if (editingPostId) {
+
+      const postRef =
+        doc(
+          db,
+          "posts",
+          editingPostId
+        );
+
+      await updateDoc(
+        postRef,
+        {
+          title: title,
+          category: category,
+          content: content,
+          imageUrl: image,
+          youtubeUrl: video,
+          updatedAt: serverTimestamp()
+        }
+      );
+
+      showMessage(
+        postMessage,
+        "Post updated successfully!",
+        "success"
+      );
+
+    } else {
+
+      await addDoc(
+        collection(db, "posts"),
+        {
+          title: title,
+          category: category,
+          content: content,
+          imageUrl: image,
+          youtubeUrl: video,
+          createdAt: serverTimestamp()
+        }
+      );
+
+      showMessage(
+        postMessage,
+        "Post published successfully!",
+        "success"
+      );
+
+    }
+
+
+    clearForm();
+
+    await loadPosts();
+
+  } catch (error) {
+
+    console.error(error);
+
+    showMessage(
+      postMessage,
+      "Could not save the post. Please try again.",
+      "error"
+    );
+
+  }
+
+
+  saveBtn.disabled = false;
+
+  saveBtn.textContent =
+    editingPostId
+      ? "UPDATE POST"
+      : "PUBLISH POST";
+
+});
+
+
+/* =========================
+   LOAD POSTS
+========================= */
+
+async function loadPosts() {
+
+  postsList.innerHTML =
+    "Loading posts...";
+
+  try {
+
+    const postsQuery =
+      query(
+        collection(db, "posts"),
+        orderBy("createdAt", "desc")
+      );
+
+    const snapshot =
+      await getDocs(postsQuery);
+
+
+    if (snapshot.empty) {
+
+      postsList.innerHTML =
+        "<p class='small-note'>No posts yet. Create your first post above.</p>";
+
+      return;
+    }
+
+
+    postsList.innerHTML = "";
+
+
+    snapshot.forEach((postDoc) => {
+
+      const post =
+        postDoc.data();
+
+      const postElement =
+        document.createElement("div");
+
+      postElement.className =
+        "post";
+
+
+      const title =
+        escapeHtml(post.title || "");
+
+      const category =
+        escapeHtml(post.category || "");
+
+      const content =
+        escapeHtml(post.content || "");
+
+
+      postElement.innerHTML = `
+
+        <div class="post-title">
+          ${title}
+        </div>
+
+        <div class="category">
+          ${category}
+        </div>
+
+        <div class="post-date">
+          DOC XANDER Media
+        </div>
+
+        ${
+          post.imageUrl
+          ? `<img src="${escapeAttribute(post.imageUrl)}"
+                  alt="Post image"
+                  onerror="this.style.display='none'">`
+          : ""
+        }
+
+        <p>${content.replace(/\n/g, "<br>")}</p>
+
+        ${
+          post.youtubeUrl
+          ? `<p>
+               🎬
+               <a href="${escapeAttribute(post.youtubeUrl)}"
+                  target="_blank"
+                  style="color:#00aaff;">
+                  Watch YouTube Video
+               </a>
+             </p>`
+          : ""
+        }
+
+        <div class="actions">
+
+          <button
+            class="secondary edit-btn"
+            data-id="${postDoc.id}">
+            Edit
+          </button>
+
+          <button
+            class="danger delete-btn"
+            data-id="${postDoc.id}">
+            Delete
+          </button>
+
+        </div>
+      `;
+
+
+      postsList.appendChild(
+        postElement
+      );
+
+    });
+
+
+    document
+      .querySelectorAll(".edit-btn")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => editPost(button.dataset.id)
+        );
+
+      });
+
+
+    document
+      .querySelectorAll(".delete-btn")
+      .forEach(button => {
+
+        button.addEventListener(
+          "click",
+          () => deletePost(button.dataset.id)
+        );
+
+      });
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    postsList.innerHTML =
+      "<p class='small-note'>Unable to load posts.</p>";
+
+  }
+
+}
+
+
+/* =========================
+   EDIT POST
+========================= */
+
+async function editPost(id) {
+
+  try {
+
+    const snapshot =
+      await getDocs(
+        collection(db, "posts")
+      );
+
+    let selectedPost = null;
+
+    snapshot.forEach(postDoc => {
+
+      if (postDoc.id === id) {
+
+        selectedPost = postDoc.data();
+
+      }
+
+    });
+
+
+    if (!selectedPost) {
+
+      alert("Post not found.");
+
+      return;
+    }
+
+
+    editingPostId = id;
+
+    postTitle.value =
+      selectedPost.title || "";
+
+    postCategory.value =
+      selectedPost.category || "News";
+
+    postContent.value =
+      selectedPost.content || "";
+
+    imageUrl.value =
+      selectedPost.imageUrl || "";
+
+    youtubeUrl.value =
+      selectedPost.youtubeUrl || "";
+
+
+    document.getElementById(
+      "formTitle"
+    ).textContent =
+      "Edit Post";
+
+
+    saveBtn.textContent =
+      "UPDATE POST";
+
+
+    cancelEditBtn.classList.remove(
+      "hidden"
+    );
+
+
+    window.scrollTo({
+      top: 0,
+      behavior: "smooth"
+    });
+
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Could not open this post.");
+
+  }
+
+}
+
+
+/* =========================
+   DELETE POST
+========================= */
+
+async function deletePost(id) {
+
+  const confirmDelete =
+    confirm(
+      "Are you sure you want to delete this post?"
+    );
+
+  if (!confirmDelete) return;
+
+
+  try {
+
+    await deleteDoc(
+      doc(db, "posts", id)
+    );
+
+    await loadPosts();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert(
+      "Could not delete the post."
+    );
+
+  }
+
+}
+
+
+/* =========================
+   CANCEL EDIT
+========================= */
+
+cancelEditBtn.addEventListener(
+  "click",
+  () => {
+
+    clearForm();
+
+  }
+);
+
+
+/* =========================
+   CLEAR FORM
+========================= */
+
+function clearForm() {
+
+  editingPostId = null;
+
+  postTitle.value = "";
+
+  postContent.value = "";
+
+  imageUrl.value = "";
+
+  youtubeUrl.value = "";
+
+  postCategory.value = "News";
+
+  document.getElementById(
+    "formTitle"
+  ).textContent =
+    "Create New Post";
+
+  saveBtn.textContent =
+    "PUBLISH POST";
+
+  cancelEditBtn.classList.add(
+    "hidden"
+  );
+
+}
+
+
+/* =========================
+   SECURITY HELPERS
+========================= */
+
+function escapeHtml(value) {
+
+  return String(value)
+    .replace(/&/g, "&amp;")
+    .replace(/</g, "&lt;")
+    .replace(/>/g, "&gt;")
+    .replace(/"/g, "&quot;")
+    .replace(/'/g, "&#039;");
+
+}
+
+
+function escapeAttribute(value) {
+
+  return escapeHtml(value);
+
+}
+
+</script>
+
+</body>
+</html>
